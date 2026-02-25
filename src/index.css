@@ -1,0 +1,181 @@
+@import "tailwindcss";
+
+@import url("https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=DM+Sans:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap");
+
+@theme {
+  --font-display: "Playfair Display", Georgia, serif;
+  --font-body: "DM Sans", sans-serif;
+  --font-mono: "JetBrains Mono", monospace;
+
+  --color-ink-950: #07080a;
+  --color-ink-900: #0d0f14;
+  --color-ink-800: #13161d;
+  --color-ink-700: #1a1e28;
+  --color-ink-600: #242836;
+  --color-ink-500: #2e3344;
+
+  --color-amber-accent: #f59e0b;
+  --color-amber-light: #fcd34d;
+  --color-amber-glow: rgba(245, 158, 11, 0.15);
+
+  --color-cream: #f5f0e8;
+
+  --color-slate: #94a3b8;
+  --color-slate-dim: #64748b;
+  --color-slate-faint: #374151;
+
+  --animate-fade-up: fadeUp 0.5s ease forwards;
+  --animate-fade-in: fadeIn 0.4s ease forwards;
+  --animate-float: float 6s ease-in-out infinite;
+
+  @keyframes fadeUp {
+    0% {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    100% {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  @keyframes fadeIn {
+    0% {
+      opacity: 0;
+    }
+    100% {
+      opacity: 1;
+    }
+  }
+
+  @keyframes float {
+    0%,
+    100% {
+      transform: translateY(0px);
+    }
+    50% {
+      transform: translateY(-10px);
+    }
+  }
+}
+
+@layer base {
+  * {
+    box-sizing: border-box;
+  }
+
+  html {
+    background-color: #07080a;
+  }
+
+  body {
+    background-color: #07080a;
+    color: #f5f0e8;
+    font-family: var(--font-body);
+    -webkit-font-smoothing: antialiased;
+  }
+
+  input:-webkit-autofill,
+  input:-webkit-autofill:hover,
+  input:-webkit-autofill:focus {
+    -webkit-box-shadow: 0 0 0px 1000px #13161d inset;
+    -webkit-text-fill-color: #f5f0e8;
+  }
+}
+
+@layer components {
+  .input-field {
+    @apply w-full rounded-lg px-4 py-3 text-sm outline-none transition-all duration-200;
+    background: var(--color-ink-800);
+    border: 1px solid var(--color-ink-600);
+    color: var(--color-cream);
+  }
+
+  .input-field:focus {
+    border-color: var(--color-amber-accent);
+    box-shadow: 0 0 0 2px var(--color-amber-glow);
+  }
+
+  .input-field::placeholder {
+    color: var(--color-slate-faint);
+  }
+
+  .btn-primary {
+    @apply w-full py-3 px-6 rounded-lg font-semibold text-sm cursor-pointer border-none transition-all duration-200;
+    background: var(--color-amber-accent);
+    color: var(--color-ink-950);
+  }
+
+  .btn-primary:hover:not(:disabled) {
+    background: var(--color-amber-light);
+    transform: translateY(-2px);
+  }
+
+  .btn-primary:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
+
+  .label {
+    @apply block text-xs uppercase tracking-widest mb-2;
+    color: var(--color-slate);
+    font-family: var(--font-mono);
+  }
+}
+
+/* ============================= */
+/*         QUILL DARK MODE       */
+/* ============================= */
+
+.ql-toolbar {
+  background: var(--color-ink-800);
+  border: 1px solid var(--color-ink-600);
+  border-bottom: none;
+  border-radius: 0.5rem 0.5rem 0 0;
+}
+
+.ql-container {
+  background: var(--color-ink-800);
+  border: 1px solid var(--color-ink-600);
+  border-radius: 0 0 0.5rem 0.5rem;
+  min-height: 300px;
+}
+
+.ql-editor {
+  color: var(--color-cream);
+  font-family: var(--font-body);
+  font-size: 0.95rem;
+}
+
+.ql-editor.ql-blank::before {
+  color: var(--color-slate-faint);
+}
+
+/* Toolbar icons */
+.ql-toolbar button,
+.ql-toolbar .ql-picker-label {
+  color: var(--color-cream);
+}
+
+.ql-toolbar button:hover,
+.ql-toolbar .ql-picker-label:hover {
+  color: var(--color-amber-accent);
+}
+
+.ql-toolbar button.ql-active {
+  color: var(--color-amber-accent);
+}
+
+/* Dropdown */
+.ql-picker-options {
+  background: var(--color-ink-800);
+  border: 1px solid var(--color-ink-600);
+}
+
+.ql-picker-item {
+  color: var(--color-cream);
+}
+
+.ql-picker-item:hover {
+  background: var(--color-ink-700);
+}
